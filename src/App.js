@@ -7,34 +7,26 @@ import Map from "./components/Map";
 
 function App() {
   const [location, setLocation] = useState({
-    lat: -3.745,
-    lng: -38.523,
+    start: "Pataskala, Ohio",
+    end: "Columus, Ohio",
   });
-
   const [startLocation, setStartLocation] = useState("Pataskala, Ohio");
-  const [endLocation, setEndLocation] = useState("");
+  const [endLocation, setEndLocation] = useState("Columbus, Ohio");
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (event) => {
-    switch (event.target.name) {
+  const handleChange = (e) => {
+    console.log("setting location");
+    switch (e.target.name) {
       case "startLocation":
-        setStartLocation(event.target.value);
+        setStartLocation(e.target.value);
         break;
       case "endLocation":
-        setEndLocation(event.target.value);
+        setEndLocation(e.target.value);
         break;
 
       default:
         break;
     }
-
-    console.log("setting location");
-
-    setTimeout(() => {
-      setLocation({
-        lat: Number(startLocation),
-        lng: Number(endLocation),
-      });
-    }, 1500);
   };
 
   return (
@@ -46,8 +38,17 @@ function App() {
           setStartLocation={setStartLocation}
           endLocation={endLocation}
           setEndLocation={setEndLocation}
+          location={location}
+          setLocation={setLocation}
+          loading={loading}
+          setLoading={setLoading}
         />
-        <Map location={location} startLocation={startLocation} />
+        <Map
+          location={location}
+          startLocation={startLocation}
+          loading={loading}
+          setLoading={setLoading}
+        />
       </main>
     </div>
   );

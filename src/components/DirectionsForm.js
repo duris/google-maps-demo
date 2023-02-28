@@ -4,19 +4,14 @@ import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
 import axios, { isCancel, AxiosError } from "axios";
 
-// And now we can use these
 const DirectionsForm = ({
   handleChange,
   startLocation,
-  setStartLocation,
   endLocation,
-  setEndLocation,
+  setLocation,
+  loading,
+  setLoading,
 }) => {
-  const [formData, setFormData] = useState({
-    start: "",
-    end: "",
-  });
-
   return (
     <div className="directions-form">
       <h1>Google Maps API</h1>
@@ -40,10 +35,20 @@ const DirectionsForm = ({
         <button
           onClick={(e) => {
             e.preventDefault();
-            alert(`${startLocation} ${endLocation}`);
+
+            setLoading(true);
+            setTimeout(() => {
+              setLocation({
+                start: startLocation,
+                end: endLocation,
+              });
+              setTimeout(() => setLoading(false), 1000);
+            }, 1500);
+
+            //finish loading
           }}
         >
-          Submit
+          {loading ? "Loading..." : "Submit"}
         </button>
       </form>
     </div>

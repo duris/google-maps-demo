@@ -5,7 +5,7 @@ body {
   color: white;
 }
 .directions-form {
-  width: 600px;
+  /* width: 600px; */
 }
 .directions-form input {
   padding: 0.5em;

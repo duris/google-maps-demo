@@ -14,7 +14,7 @@ const containerStyle = {
   height: "400px",
 };
 
-const Map = ({ location, startLocation }) => {
+const Map = ({ location, startLocation, setLoading }) => {
   const [response, setResponse] = useState("");
 
   function directionsCallback(response) {
@@ -37,8 +37,8 @@ const Map = ({ location, startLocation }) => {
         <DirectionsService
           // required
           options={{
-            destination: "Columbus, Ohio",
-            origin: startLocation,
+            destination: location.end,
+            origin: location.start,
             travelMode: "DRIVING",
           }}
           // required
