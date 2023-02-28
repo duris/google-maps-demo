@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
@@ -14,7 +14,8 @@ const DirectionsForm = ({
 }) => {
   return (
     <div className="directions-form">
-      <h1>Google Maps API</h1>
+      <h1>React Google Maps</h1>
+
       <form>
         <label htmlFor="startLocation">Start Location</label>
         <input
