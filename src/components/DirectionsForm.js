@@ -11,6 +11,8 @@ const DirectionsForm = ({
   setLocation,
   loading,
   setLoading,
+  responseCount,
+  setResponseCount,
 }) => {
   return (
     <div className="directions-form">
@@ -36,18 +38,17 @@ const DirectionsForm = ({
         <button
           onClick={(e) => {
             e.preventDefault();
-
+            setResponseCount(0);
             setLoading(true);
-            setTimeout(() => {
-              setLocation({
-                start: startLocation,
-                end: endLocation,
-              });
-              setTimeout(() => setLoading(false), 1000);
-            }, 1500);
+            setLocation({
+              start: startLocation,
+              end: endLocation,
+            });
 
-            //finish loading
+            //finish loading response
+            setTimeout(() => setLoading(false), 1500);
           }}
+          disabled={loading}
         >
           {loading ? "Loading..." : "Submit"}
         </button>

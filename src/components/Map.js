@@ -14,20 +14,28 @@ const containerStyle = {
   height: "400px",
 };
 
-const Map = ({ location, startLocation, setLoading }) => {
+const Map = ({ location, responseCount, setResponseCount }) => {
   const [response, setResponse] = useState("");
 
   function directionsCallback(response) {
-    if (response != null) {
-      console.log(response);
-      switch (response.status) {
-        case "OK":
-          setResponse(response);
-          break;
+    const myTimeout = setTimeout(() => {
+      if (response != null) {
+        switch (response.status) {
+          case "OK":
+            setResponse(response);
+            setResponseCount(responseCount + 1);
+            break;
 
-        default:
-          break;
+          default:
+            break;
+        }
       }
+    }, 1000);
+
+    console.log(response.geocoded_waypoints);
+
+    if (responseCount > response.geocoded_waypoints.length) {
+      clearTimeout(myTimeout);
     }
   }
 
@@ -37,8 +45,8 @@ const Map = ({ location, startLocation, setLoading }) => {
         <DirectionsService
           // required
           options={{
-            destination: location.end,
-            origin: location.start,
+            destination: location.start,
+            origin: location.end,
             travelMode: "DRIVING",
           }}
           // required

@@ -13,9 +13,9 @@ function App() {
   const [startLocation, setStartLocation] = useState("Pataskala, Ohio");
   const [endLocation, setEndLocation] = useState("Columbus, Ohio");
   const [loading, setLoading] = useState(false);
+  const [responseCount, setResponseCount] = useState(0);
 
   const handleChange = (e) => {
-    console.log("setting location");
     switch (e.target.name) {
       case "startLocation":
         setStartLocation(e.target.value);
@@ -42,12 +42,13 @@ function App() {
           setLocation={setLocation}
           loading={loading}
           setLoading={setLoading}
+          responseCount={responseCount}
+          setResponseCount={setResponseCount}
         />
         <Map
           location={location}
-          startLocation={startLocation}
-          loading={loading}
-          setLoading={setLoading}
+          responseCount={responseCount}
+          setResponseCount={setResponseCount}
         />
       </main>
     </div>
