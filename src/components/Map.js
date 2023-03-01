@@ -45,8 +45,8 @@ const Map = ({ location, responseCount, setResponseCount }) => {
         <DirectionsService
           // required
           options={{
-            destination: location.start,
-            origin: location.end,
+            destination: location.end,
+            origin: location.start,
             travelMode: "DRIVING",
           }}
           // required
