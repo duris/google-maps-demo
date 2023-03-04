@@ -1,3 +1,3 @@
 # React Google Maps
 
-Directions Renderer Example
+Google maps api directions renderer example using React Google Maps  
